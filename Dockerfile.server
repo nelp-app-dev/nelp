@@ -1,0 +1,25 @@
+FROM node:current-alpine AS base
+ARG SERVICE
+ENV SERVICE=${SERVICE}
+WORKDIR /nelp-${SERVICE}
+# RUN mkdir -p ./data/uploads
+COPY ./packages/server/package.json yarn.lock ./packages/server/tsconfig.json ./packages/server/tsconfig.build.json ./packages/server/nest-cli.json ./
+RUN yarn install --frozen-lockfile && yarn cache clean
+
+FROM base as development
+ARG SERVICE
+ENV SERVICE=${SERVICE}
+WORKDIR /nelp-${SERVICE}
+ENV NODE_ENV=development
+CMD yarn start:dev ${SERVICE}
+
+# FROM base as apiion
+# WORKDIR /api
+# ENV NODE_ENV=apiion
+# COPY apps/ ./apps/
+# COPY libs/ ./libs/
+# RUN yarn build api \
+#   & yarn build auth 
+# CMD node ./dist/apps/api/main \
+#   & node ./dist/apps/auth/main 
+# HEALTHCHECK CMD curl --fail http://nelp.com:3700/docs

@@ -1,0 +1,26 @@
+FROM node:current-alpine AS base
+ARG SERVICE
+ENV SERVICE=${SERVICE}
+WORKDIR /nelp-${SERVICE}
+COPY ./packages/clients/${SERVICE}/package.json ./yarn.lock /packages/clients/${SERVICE}/tsconfig.json ./
+COPY ./packages/clients/${SERVICE}/public/ ./public/
+COPY ./packages/clients/${SERVICE}/src/ ./src/
+RUN yarn install --frozen-lockfile && yarn cache clean
+
+FROM base as development
+ARG SERVICE
+ENV SERVICE=${SERVICE}
+WORKDIR /nelp-${SERVICE}
+ENV NODE_ENV=development
+CMD yarn start
+
+# FROM base as production
+# WORKDIR /api
+# ENV NODE_ENV=production
+# COPY apps/ ./apps/
+# COPY libs/ ./libs/
+# RUN yarn build api \
+#   & yarn build auth 
+# CMD node ./dist/apps/api/main \
+#   & node ./dist/apps/auth/main 
+# HEALTHCHECK CMD curl --fail http://nelp.com:3700/docs

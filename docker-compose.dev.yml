@@ -1,0 +1,47 @@
+version: '3.9'
+services:
+  api:
+    build:
+      target: development
+    volumes:
+      - ./packages/server/apps/api:/nelp-api/apps/api
+      - ./packages/server/libs:/nelp-api/libs
+  catalog:
+    build:
+      target: development
+    volumes:
+      - ./packages/server/apps/catalog:/nelp-catalog/apps/catalog
+      - ./packages/server/libs:/nelp-catalog/libs
+  cart:
+    build:
+      target: development
+    volumes:
+      - ./packages/server/apps/cart:/nelp-cart/apps/cart
+      - ./packages/server/libs:/nelp-cart/libs
+  admin:
+    build:
+      target: development
+    volumes:
+      - ./packages/clients/admin:/nelp-admin
+  web-sales:
+    build:
+      target: development
+    volumes:
+      - ./packages/clients/web-sales:/nelp-web-sales
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    depends_on:
+      - postgres
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD:-admin}
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    ports:
+      - '${PGADMIN_PORT:-5050}:80'
+    networks:
+      app-network:
+volumes:
+  pgadmin-data:
+    driver: local

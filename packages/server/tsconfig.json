@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "paths": {
+      "@nelp/entities": ["libs/entities/src"],
+      "@nelp/entities/*": ["libs/entities/src/*"],
+      "@nelp/base": ["libs/base/src"],
+      "@nelp/base/*": ["libs/base/src/*"],
+      "@nelp/dtos": ["libs/dtos/src"],
+      "@nelp/dtos/*": ["libs/dtos/src/*"],
+      "@nelp/config": ["libs/config/src"],
+      "@nelp/config/*": ["libs/config/src/*"],
+      "@nelp/interceptors": ["libs/interceptors/src"],
+      "@nelp/interceptors/*": ["libs/interceptors/src/*"],
+      "@nelp/filters": ["libs/filters/src"],
+      "@nelp/filters/*": ["libs/filters/src/*"],
+      "@nelp/databases": ["libs/databases/src"],
+      "@nelp/databases/*": ["libs/databases/src/*"]
+    }
+  }
+}
