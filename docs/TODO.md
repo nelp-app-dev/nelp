@@ -34,3 +34,16 @@ WEB
 chakra-ui
 react
 Payment with Stripe
+
+front
+admin
+websales
+
+back
+api
+cart
+catalog
+
+admin
+websales
+server

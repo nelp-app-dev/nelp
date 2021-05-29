@@ -2,10 +2,10 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: [
-      './packages/server/tsconfig.json',
+      './packages/core/tsconfig.json',
       './packages/common/tsconfig.json',
-      './packages/clients/admin/tsconfig.json',
-      './packages/clients/web-sales/tsconfig.json',
+      './packages/admin/tsconfig.json',
+      './packages/web-sales/tsconfig.json',
     ],
     sourceType: 'module',
   },
@@ -19,7 +19,7 @@ module.exports = {
     node: true,
     jest: true,
   },
-  ignorePatterns: ['.eslintrc.js', '**/dist/**/*'],
+  ignorePatterns: ['.eslintrc.js'],
   rules: {
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
