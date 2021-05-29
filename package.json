@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start:dev": "docker-compose up --build --force-recreate --remove-orphans"
+    "start": "docker-compose up --build --force-recreate --remove-orphans"
   },
   "workspaces": [
     "packages/*"
