@@ -7,9 +7,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start-server:dev": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build --force-recreate api catalog cart redis postgres nginx pgadmin",
-    "start-clients:dev": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build --force-recreate admin web-sales",
-    "start:dev": "yarn start-server:dev & yarn start-clients:dev"
+    "start:dev": "docker-compose up --build --force-recreate --remove-orphans"
   },
   "workspaces": [
     "packages/*"

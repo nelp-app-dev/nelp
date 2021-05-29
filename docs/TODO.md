@@ -47,3 +47,6 @@ catalog
 admin
 websales
 server
+
+generate selfsigned ssl key and cert
+openssl req -x509 -nodes -days 365 -subj "/C=CA/ST=QC/O=Company, Inc./CN=nelp.com" -addext "subjectAltName=DNS:nelp.com" -newkey rsa:2048 -keyout ./config/private.key -out ./config/cert.crt;
