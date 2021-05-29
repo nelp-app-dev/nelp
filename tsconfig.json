@@ -9,8 +9,6 @@
     "esModuleInterop": true,
     "module": "commonjs",
     "moduleResolution": "node",
-    "target": "es2015",
-    "composite": true
-  },
-  "references": [{ "path": "./packages/common" }]
+    "target": "es2015"
+  }
 }
