@@ -1,8 +1,7 @@
 import { EntityRepository, Populate, QueryOrder, wrap } from '@mikro-orm/core';
-import { CollectionTypeDTO } from '@nelp/dtos';
+import { InjectRepository } from '@mikro-orm/nestjs';
 import { Collection, CollectionType } from '@nelp/entities';
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class CollectionTypeService {

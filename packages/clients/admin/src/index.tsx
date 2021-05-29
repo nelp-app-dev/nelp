@@ -4,6 +4,9 @@ import ReactDOM from 'react-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+// import * as common from '@nelp/common';
+// import * as common from '../../../common/dist/index';
+// common.toto();
 
 export const themeOptions: ThemeOptions = {
   palette: {

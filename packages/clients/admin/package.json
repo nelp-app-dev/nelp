@@ -30,6 +30,10 @@
     "web-vitals": "^1.0.1",
     "zustand": "^3.5.1"
   },
+  "moduleNameMapper": {
+    "@nelp/common/(.*)": "../../common/dist/$1",
+    "@nelp/common": "../../common/dist"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

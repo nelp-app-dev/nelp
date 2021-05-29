@@ -3,6 +3,7 @@ module.exports = {
   parserOptions: {
     project: [
       './packages/server/tsconfig.json',
+      './packages/common/tsconfig.json',
       './packages/clients/admin/tsconfig.json',
       './packages/clients/web-sales/tsconfig.json',
     ],
@@ -18,7 +19,7 @@ module.exports = {
     node: true,
     jest: true,
   },
-  ignorePatterns: ['.eslintrc.js'],
+  ignorePatterns: ['.eslintrc.js', '**/dist/**/*'],
   rules: {
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
