@@ -7,7 +7,7 @@
     "@chakra-ui/react": "^1.0.0",
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
-    "@nelp/common": "^1.0.0",
+    "@nelp/common": "^0.0.1",
     "@reduxjs/toolkit": "^1.5.1",
     "@stripe/react-stripe-js": "^1.4.1",
     "@stripe/stripe-js": "^1.15.0",
