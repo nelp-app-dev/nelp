@@ -15,5 +15,12 @@
   "devDependencies": {
     "lerna": "^4.0.0",
     "typescript": "^4.3.2"
+  },
+  "mikro-orm": {
+    "useTsNode": true,
+    "configPaths": [
+      "./packages/core/src/catalog/mikro-orm.config.ts",
+      "./packages/core/dist/catalog/mikro-orm.config.js"
+    ]
   }
 }
