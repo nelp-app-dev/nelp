@@ -6,10 +6,17 @@ RUN yarn install --frozen-lockfile && yarn cache clean
 RUN yarn lerna run --scope @nelp/common build && yarn lerna bootstrap
 CMD yarn lerna run start --stream
 
+# FROM base as test
+# WORKDIR /nelp
+# COPY --from=base . .
+# ENV NODE_ENV=development
+# CMD yarn lerna run test --stream
+
 # FROM base as development
 # WORKDIR /nelp
+# COPY --from=base . .
 # ENV NODE_ENV=development
-# CMD yarn start:dev ${SERVICE}
+# CMD yarn lerna run start --stream
 
 # FROM base as apiion
 # WORKDIR /api
