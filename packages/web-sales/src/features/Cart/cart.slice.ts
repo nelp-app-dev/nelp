@@ -32,7 +32,7 @@ export const getCart = createAsyncThunk('cart/getCart', async () => {
 export const addItem = createAsyncThunk(
   'cart/addItem',
   async (params: { cart: any; product: any }) => {
-    const { data } = await axios(`https://nelp.com:8000/v1/carts/addItem`, {
+    const { data } = await axios(`https://nelp.com:8000/v1/carts/add-item`, {
       method: 'post',
       data: { product: params.product },
       withCredentials: true,
@@ -45,7 +45,7 @@ export const addItem = createAsyncThunk(
 export const removeItem = createAsyncThunk(
   'cart/removeItem',
   async (params: { cart: any; product: any; quantity: number }) => {
-    const { data } = await axios(`https://nelp.com:8000/v1/carts/addItem`, {
+    const { data } = await axios(`https://nelp.com:8000/v1/carts/remove-item`, {
       method: 'delete',
       data: { product: params.product, quantity: params.quantity },
       withCredentials: true,

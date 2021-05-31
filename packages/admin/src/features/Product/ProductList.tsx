@@ -30,16 +30,16 @@ const columns: GridColDef[] = [
     headerClassName: 'table-header',
     flex: 1,
   },
-  {
-    field: 'collectionType',
-    headerName: 'Collection Type',
-    headerClassName: 'table-header',
-    flex: 1,
-    sortable: false,
-    renderCell: (params: any) => (
-      <Box>{params.value.collection.name + ' - ' + params.value.name}</Box>
-    ),
-  },
+  // {
+  //   field: 'collectionType',
+  //   headerName: 'Collection Type',
+  //   headerClassName: 'table-header',
+  //   flex: 1,
+  //   sortable: false,
+  //   renderCell: (params: any) => (
+  //     <Box>{params.value.collection.name + ' - ' + params.value.name}</Box>
+  //   ),
+  // },
   {
     field: 'price',
     headerName: 'Price',
