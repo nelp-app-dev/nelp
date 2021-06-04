@@ -1,7 +1,7 @@
 FROM node:current-alpine AS base
 WORKDIR /nelp
 COPY ./packages/ ./packages/
-COPY ./package.json ./yarn.lock ./lerna.json ./tsconfig.json ./
+COPY ./package.json ./yarn.lock ./lerna.json ./
 RUN yarn install --frozen-lockfile && yarn cache clean
 RUN yarn lerna run --scope @nelp/common build && yarn lerna bootstrap
 CMD yarn lerna run start --stream
