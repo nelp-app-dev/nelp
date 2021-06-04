@@ -1,25 +1,4 @@
 {
   "git.ignoreLimitWarning": true,
-  "sqltools.connections": [
-    {
-      "previewLimit": 50,
-      "server": "localhost",
-      "port": 5432,
-      "driver": "PostgreSQL",
-      "name": "127.0.0.1",
-      "database": "nelp",
-      "username": "nelp",
-      "password": "nelp_postgres_3718"
-    },
-    {
-      "previewLimit": 50,
-      "server": "localhost",
-      "port": 5432,
-      "driver": "PostgreSQL",
-      "name": "127.0.0.1",
-      "database": "nelp-test",
-      "username": "nelp",
-      "password": "nelp_postgres_3718"
-    }
-  ]
+  "sqltools.connections": []
 }

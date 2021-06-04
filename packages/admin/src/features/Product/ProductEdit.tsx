@@ -20,9 +20,6 @@ import { useNav } from '../Common/Layout/layout.store';
 const useStyles = makeStyles((theme) => ({
   form: {
     flexGrow: 1,
-    // '&& .MuiGrid-item': {
-    //   margin: theme.spacing(1),
-    // },
     '&& .MuiFormControl-root': {
       marginBottom: theme.spacing(1.5),
     },

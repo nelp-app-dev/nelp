@@ -1,13 +1,5 @@
-# Install Redis
-sudo apt-get update
-sudo apt-get install -y redis-server
+curl -fsSL https://get.docker.com -o get-docker.sh
+sh get-docker.sh
 
-# Install Postgres
-# Manually create user "nelp" and databases "nelp" and "nelp-test"
-sudo apt-get update
-sudo apt-get install -y postgresql
-
-# Install Nginx
-# to reload nginx -> sudo systemctl reload nginx
-sudo apt-get update
-sudo apt-get install -y nginx
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
