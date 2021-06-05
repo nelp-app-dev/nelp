@@ -8,8 +8,8 @@ import { useProducts } from './product.api';
 const Image = ({ params }: { params: GridCellParams }) => {
   return (
     <Avatar
-      alt={params.value?.toString()}
-      src={params.value?.toString()}
+      alt={(params.value || '').toString()}
+      src={(params.value || '').toString()}
       style={{ width: ' 40px', height: '40px', backgroundColor: '#eee' }}
     />
   );

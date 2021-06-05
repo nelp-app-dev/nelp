@@ -1,2 +1,1 @@
-yarn lerna run --scope @nelp/common build && yarn lerna bootstrap
-yarn lerna run start --stream
+docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' nelp_postgres_1

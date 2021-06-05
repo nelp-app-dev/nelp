@@ -3,27 +3,19 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
-import MenuIcon from '@material-ui/icons/Menu';
 import { AiFillTag } from 'react-icons/ai';
 import { RiShoppingCart2Fill } from 'react-icons/ri';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import {
   ListItem,
   ListItemIcon,
   ListItemText,
   ListSubheader,
 } from '@material-ui/core';
-import { Switch, Route, useHistory, useParams } from 'react-router-dom';
+import { Switch, Route, useHistory } from 'react-router-dom';
 import { ProductList } from '../../Product/ProductList';
 import { ProductCreate } from '../../Product/ProductCreate';
 import { ProductEdit } from '../../Product/ProductEdit';
-import { useProduct } from '../../Product/product.api';
 import { Nav } from './Nav/Nav';
 
 const useStyles = makeStyles((theme) => ({
@@ -71,8 +63,8 @@ export const Layout = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const history = useHistory();
-  const { id }: any = useParams();
-  const { data = {} }: any = useProduct(id || '');
+  // const { id }: any = useParams();
+  // const { data = {} }: any = useProduct(id || '');
 
   const navigate = (to: string, open: boolean) => (event: any) => {
     if (
