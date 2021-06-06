@@ -1,4 +1,4 @@
-import { Avatar, Box } from '@material-ui/core';
+import { Avatar } from '@material-ui/core';
 import { GridCellParams, GridColDef } from '@material-ui/data-grid';
 import { useEffect } from 'react';
 import { useNav } from '../Common/Layout/layout.store';

@@ -1,21 +1,39 @@
 import './App.css';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Layout } from './features/Common/Layout/Layout';
 import { useAuth } from './features/Auth/auth.api';
 import { Loading } from './features/Common/Loading/Loading';
-import { Login } from './features/Auth/Login';
+import { useEffect, useState } from 'react';
+import loadable from '@loadable/component';
+
+const Layout = loadable(() => import('./features/Common/Layout/Layout'), {
+  resolveComponent: (components) => components.Layout,
+});
+
+const Login = loadable(() => import('./features/Auth/Login'), {
+  resolveComponent: (components) => components.Login,
+});
 
 const App = () => {
-  const { data, isLoading } = useAuth();
+  const { verify, authenticated } = useAuth();
+  const [loading, setLoading] = useState(true);
 
-  return isLoading ? (
-    <Loading loading={true} />
-  ) : data?.authenticated ? (
-    <Router>
-      <Layout />
-    </Router>
-  ) : (
-    <Login />
+  useEffect(() => {
+    (async () => {
+      await verify();
+      setLoading(false);
+    })();
+  }, [verify]);
+
+  return (
+    <>
+      {authenticated && (
+        <Router>
+          <Layout />
+        </Router>
+      )}
+      {authenticated === false && <Login />}
+      <Loading loading={loading} />
+    </>
   );
 };
 

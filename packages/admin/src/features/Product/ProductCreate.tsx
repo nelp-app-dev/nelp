@@ -8,13 +8,8 @@ import {
   Grid,
   Box,
   makeStyles,
-  InputLabel,
-  Select,
-  MenuItem,
-  ListSubheader,
 } from '@material-ui/core';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import NumberFormat from 'react-number-format';
 import { useHistory } from 'react-router-dom';
 import { ImageUpload } from '../Common/Image/ImageUpload';

@@ -3,10 +3,9 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useAuth } from './auth.api';
+import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -18,42 +17,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Alert(props: AlertProps) {
-  return (
-    <MuiAlert
-      elevation={6}
-      variant="filled"
-      style={{ marginTop: '10px' }}
-      {...props}
-    />
-  );
-}
-
-interface IAuth {
-  email: string;
-  password: string;
-}
-
 export const Login = () => {
   const classes = useStyles();
-  const [auth, setAuth] = useState({} as IAuth);
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
+  const [loading, setLoading] = useState(false);
 
-  const onSubmit = handleSubmit((data: any) => {
-    console.log(data, errors);
+  const { login } = useAuth();
+
+  const onSubmit = handleSubmit(async (data: any) => {
+    setLoading(true);
+    await login(data);
+    setLoading(false);
   });
-
-  console.log(watch('email')); // watch input value by passing the name of it
 
   return (
     <Container className={classes.container} maxWidth="xs">
       <form onSubmit={onSubmit}>
-        <h1 style={{ fontWeight: 200 }}>Admin Page</h1>
+        <h1 style={{ fontWeight: 200 }}>Admin Section</h1>
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Grid container spacing={2}>
@@ -63,18 +47,23 @@ export const Login = () => {
                   label="Email"
                   size="medium"
                   variant="outlined"
-                  {...register('email', { required: true })}
+                  {...register('email', {
+                    required: true,
+                    pattern: /^([a-z0-9_.-]+)@([\da-z.-]+)\.([a-z.]{2,6})$/,
+                  })}
                 />
                 {errors.email && (
                   <div
                     style={{
+                      marginLeft: '15px',
                       textAlign: 'left',
                       fontSize: '12px',
                       padding: '5px 0',
                       color: '#f44336',
                     }}
                   >
-                    Email is required
+                    {errors.email.type === 'required' && 'Email is required'}
+                    {errors.email.type === 'pattern' && 'Email is invalid'}
                   </div>
                 )}
               </Grid>
@@ -90,6 +79,7 @@ export const Login = () => {
                 {errors.password && (
                   <div
                     style={{
+                      marginLeft: '15px',
                       textAlign: 'left',
                       fontSize: '12px',
                       padding: '5px 0',
@@ -109,8 +99,9 @@ export const Login = () => {
               fullWidth
               type="submit"
               variant="contained"
+              disabled={loading}
             >
-              Log in
+              {loading ? 'Loading' : 'Log in'}
             </Button>
           </Grid>
         </Grid>
