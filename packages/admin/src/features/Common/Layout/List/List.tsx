@@ -4,7 +4,7 @@ import { AiOutlinePlus } from 'react-icons/ai';
 import { MdEdit } from 'react-icons/md';
 import { useHistory } from 'react-router-dom';
 import { Loading } from '../../Loading/Loading';
-// import { Loading } from './Loading';
+import { AiFillFile } from 'react-icons/ai';
 
 export const EditButton = ({ to }: { to: string }) => {
   const history = useHistory();
@@ -59,8 +59,54 @@ export const List = ({ loading, resource, rows, columns }: Props) => {
   const classes = useStyles();
   const history = useHistory();
 
+  let content = null;
+
+  if (rows.length === 0 && loading === false) {
+    content = (
+      <div
+        style={{
+          textAlign: 'center',
+          height: 'calc(100% - 64px)',
+          alignItems: 'center',
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        <div>
+          <AiFillFile size="150px" color="#ccc" />
+          <h2 style={{ fontSize: '20px', color: '#999' }}>
+            Oups...the list is empty
+          </h2>
+          <p style={{ color: '#999', fontSize: '16px', marginBottom: '25px' }}>
+            Be the first to create a new one
+          </p>
+          <Button
+            size="large"
+            color="primary"
+            type="button"
+            variant="contained"
+            onClick={() => history.push(`/${resource}/create`)}
+          >
+            Create
+          </Button>
+        </div>
+      </div>
+    );
+  } else {
+    content = (
+      <UIDataGrid
+        className={classes.dataGrid}
+        rows={rows}
+        columns={columns}
+        pageSize={8}
+        checkboxSelection
+      />
+    );
+  }
+
   return (
     <div className={classes.root}>
+      <Loading loading={loading} />
       <Box display="flex" justifyContent="flex-end" marginBottom="5px">
         <Button
           href=""
@@ -86,14 +132,7 @@ export const List = ({ loading, resource, rows, columns }: Props) => {
         </Button> */}
       </Box>
       <Paper elevation={4} className={classes.paper}>
-        <Loading loading={loading} />
-        <UIDataGrid
-          className={classes.dataGrid}
-          rows={rows}
-          columns={columns}
-          pageSize={8}
-          checkboxSelection
-        />
+        {content}
       </Paper>
     </div>
   );

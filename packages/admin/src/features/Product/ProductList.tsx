@@ -1,6 +1,7 @@
 import { Avatar } from '@material-ui/core';
 import { GridCellParams, GridColDef } from '@material-ui/data-grid';
 import { useEffect } from 'react';
+import { Layout } from '../Common/Layout/Layout';
 import { useNav } from '../Common/Layout/layout.store';
 import { List, EditButton } from '../Common/Layout/List/List';
 import { useProducts } from './product.api';
@@ -68,11 +69,13 @@ export const ProductList = () => {
   }, []);
 
   return (
-    <List
-      loading={isLoading}
-      resource="products"
-      columns={columns}
-      rows={data}
-    />
+    <Layout>
+      <List
+        loading={isLoading}
+        resource="products"
+        columns={columns}
+        rows={data}
+      />
+    </Layout>
   );
 };

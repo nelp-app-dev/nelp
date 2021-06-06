@@ -5,6 +5,7 @@ services:
       context: .
     volumes:
       - ./packages:/nelp/packages
+      - catalog-uploads:/nelp/packages/core/uploads
       - /nelp/node_modules
   postgres:
     image: postgres:13-alpine

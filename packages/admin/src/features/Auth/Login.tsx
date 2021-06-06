@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useForm } from 'react-hook-form';
 import { useAuth } from './auth.api';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -25,13 +26,13 @@ export const Login = () => {
     formState: { errors },
   } = useForm();
   const [loading, setLoading] = useState(false);
-
   const { login } = useAuth();
+  const history = useHistory();
 
   const onSubmit = handleSubmit(async (data: any) => {
     setLoading(true);
     await login(data);
-    setLoading(false);
+    history.push('/products');
   });
 
   return (

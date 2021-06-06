@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Layout = () => {
+export const Layout = ({ children }: any) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const history = useHistory();
@@ -115,18 +115,7 @@ export const Layout = () => {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Switch>
-          <Route path="/products/create">
-            <ProductCreate />
-          </Route>
-          <Route path="/products/:id">
-            <ProductEdit />
-          </Route>
-          <Route path="/products">
-            <ProductList />
-          </Route>
-          <Route path="/orders">orders</Route>
-        </Switch>
+        {children}
       </main>
     </div>
   );

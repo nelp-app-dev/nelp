@@ -4,10 +4,12 @@ import { api } from '../Common/api';
 interface IAuthState {
   authenticated: boolean | null;
   login: (loginData: any) => any;
+  logout: () => any;
   verify: () => any;
 }
 
 const login = (auth: any) => api(`/v1/auth/login`, 'post', auth);
+const logout = () => api(`/v1/auth/logout`, 'post');
 const verify = () => api(`/v1/auth/verify`);
 
 export const useAuth = create<IAuthState>((set: any) => ({
@@ -18,6 +20,14 @@ export const useAuth = create<IAuthState>((set: any) => ({
     try {
       await login(loginData);
       set({ authenticated: true });
+    } catch (error) {
+      set({ authenticated: false, error });
+    }
+  },
+  logout: async () => {
+    try {
+      await logout();
+      document.location.reload();
     } catch (error) {
       set({ authenticated: false, error });
     }

@@ -16,6 +16,7 @@ import { ImageUpload } from '../Common/Image/ImageUpload';
 import { Document } from '../Common/Layout/Document/Document';
 import { useProduct } from './product.api';
 import { useNav } from '../Common/Layout/layout.store';
+import { Layout } from '../Common/Layout/Layout';
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -45,73 +46,75 @@ const useStyles = makeStyles((theme) => ({
 export const ProductEdit = () => {
   const classes = useStyles();
   const { id }: any = useParams();
-  const { data = {} as any, isLoading } = useProduct(id);
-  const [product, setProduct] = useState(data);
+  const { data = { data: {} } as any, isLoading } = useProduct(id);
+  const [product, setProduct] = useState(data.data);
   const { setTitle } = useNav();
 
   useEffect(() => {
-    !!data.name && setTitle('Product: ' + data.name);
-    setProduct(data);
-  }, [data]);
+    !!data.data.name && setTitle('Product: ' + data.data.name);
+    setProduct(data.data);
+  }, [data.data, setTitle]);
 
   return (
-    <Document loading={isLoading}>
-      <form noValidate autoComplete="off" className={classes.form}>
-        <Grid container spacing={3}>
-          <Grid item xs={9}>
-            <FormControl fullWidth>
-              <TextField
-                label="Name"
-                variant="filled"
-                value={product.name || ''}
-                onChange={(event) =>
-                  setProduct({ ...product, name: event.target.value })
-                }
-              />
-            </FormControl>
+    <Layout>
+      <Document loading={isLoading}>
+        <form noValidate autoComplete="off" className={classes.form}>
+          <Grid container spacing={3}>
+            <Grid item xs={9}>
+              <FormControl fullWidth>
+                <TextField
+                  label="Name"
+                  variant="filled"
+                  value={product.name || ''}
+                  onChange={(event) =>
+                    setProduct({ ...product, name: event.target.value })
+                  }
+                />
+              </FormControl>
 
-            <FormControl fullWidth>
-              <NumberFormat
-                label="Price"
-                variant="filled"
-                customInput={TextField}
-                value={product.price || ''}
-                onChange={(event) =>
-                  setProduct({ ...product, price: +event.target.value })
-                }
-              />
-            </FormControl>
+              <FormControl fullWidth>
+                <NumberFormat
+                  label="Price"
+                  variant="filled"
+                  customInput={TextField}
+                  value={product.price || ''}
+                  onChange={(event) =>
+                    setProduct({ ...product, price: +event.target.value })
+                  }
+                />
+              </FormControl>
+            </Grid>
+            <Grid item xs={3}>
+              <Card style={{ padding: '15px' }}>
+                <ImageUpload
+                  image={product.image}
+                  onChange={(image: any) => {
+                    setProduct({ ...product, image });
+                  }}
+                />
+              </Card>
+            </Grid>
           </Grid>
-          <Grid item xs={3}>
-            <Card style={{ padding: '15px' }}>
-              <ImageUpload
-                image={product.image}
-                onChange={(image: any) => {
-                  setProduct({ ...product, image });
-                }}
-              />
-            </Card>
-          </Grid>
-        </Grid>
 
-        <Box className={classes.formBottom}>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            startIcon={<SaveIcon />}
-          >
-            Save
-          </Button>
-          <Button
-            href="#text-buttons"
-            color="secondary"
-            startIcon={<IoTrashBin />}
-          >
-            Delete
-          </Button>
-        </Box>
-      </form>
-    </Document>
+          <Box className={classes.formBottom}>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              startIcon={<SaveIcon />}
+            >
+              Save
+            </Button>
+            <Button
+              href="#text-buttons"
+              color="secondary"
+              startIcon={<IoTrashBin />}
+            >
+              Delete
+            </Button>
+          </Box>
+        </form>
+      </Document>
+    </Layout>
   );
 };
